@@ -17,8 +17,8 @@ def main():
     args = parser.parse_args()
 
     # Define file paths
-    inventory_file = os.path.join(SCRIPT_DIR, "../data/inventory.yml")
-    hosts_data_file = os.path.join(SCRIPT_DIR, "../data/hosts_data.yml")
+    inventory_file = os.path.join(SCRIPT_DIR, "data/inventory.yml")
+    hosts_data_file = os.path.join(SCRIPT_DIR, "data/hosts_data.yml")
 
     # Load and merge data
     merged_data = merge_host_data(inventory_file,hosts_data_file)

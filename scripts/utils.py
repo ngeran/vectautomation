@@ -59,8 +59,8 @@ def merge_host_data(inventory_file, hosts_data_file):
 # Example usage (for testing)
 if __name__ == "__main__":
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-    inventory_file = os.path.join(SCRIPT_DIR, "../data/inventory.yml")
-    hosts_data_file = os.path.join(SCRIPT_DIR, "../data/hosts_data.yml")
+    inventory_file = os.path.join(SCRIPT_DIR, "data/inventory.yml")
+    hosts_data_file = os.path.join(SCRIPT_DIR, "data/hosts_data.yml")
     data = merge_host_data(inventory_file, hosts_data_file)
     if data:
         print("Merged data:", data)
