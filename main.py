@@ -1,7 +1,7 @@
 # /home/nikos/github/ngeran/vectautomation/main.py
 import os
 import argparse
-from scripts.utils import merge_host_data, load_yaml_file  # Added load_yaml_file
+from scripts.utils import merge_host_data, load_yaml_file
 from scripts.connect_to_hosts import connect_to_hosts, disconnect_from_hosts
 from scripts.actions import execute_actions
 

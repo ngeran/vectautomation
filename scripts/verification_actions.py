@@ -1,6 +1,13 @@
-# /home/nikos/github/ngeran/vectautomation/scripts/verification_actions.py
 import os
 from datetime import datetime
+from contextlib import contextmanager
+import signal
+
+# Timeout context for RPC calls
+@contextmanager
+def timeout(seconds):
+    def signal_handler(signum, frame):
+        raise TimeoutError("Operation timed out")
     signal.signal(signal.SIGALRM, signal_handler)
     signal.alarm(seconds)
     try:
