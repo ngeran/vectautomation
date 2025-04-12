@@ -1,7 +1,3 @@
----
-
-### README.md
-
 ```markdown
 # Vectautomation
 
@@ -144,59 +140,3 @@ python main.py --actions <action1> [action2 ...]
    Disconnected from 172.27.200.201 (172.27.200.201)
    Completed actions: ['ping', 'bgp_verification']
    ```
-
-### Notes
-
-- **Configuration**: Update `hosts_data.yml` with correct IPs and credentials.
-- **Reports**: Check `reports/` for outputs (e.g., `ping_report_*.txt`).
-- **Interruptions**: Press `Ctrl+C` to stop cleanly:
-  ```
-  Ping action interrupted by user.
-  Disconnected from 172.27.200.200 (172.27.200.200)
-  Script interrupted by user.
-  ```
-- **Logging**: Shows `Connected` and `Authentication` logs; `Sending` is suppressed.
-- **Troubleshooting**:
-  - Verify SSH access if devices are unreachable.
-  - Check `hosts_data.yml` for errors.
-  - Update dependencies:
-    ```bash
-    pip install --upgrade junos-eznc ncclient pyyaml jinja2 lxml
-    ```
-```
-
----
-
-### Instructions
-1. **Copy and Paste**:
-   - Copy the entire Markdown block above.
-   - Open `/home/nikos/github/ngeran/vectautomation/README.md` in a text editor.
-   - Paste the content, overwriting the existing `README.md` or appending as needed.
-   - Save the file.
-
-2. **Verify**:
-   - Check the file renders correctly in a Markdown viewer (e.g., GitHub, VS Code).
-   - Run a command to confirm it works:
-     ```bash
-     python main.py --actions ping
-     ```
-
----
-
-### Notes
-- **Content**: Includes directory structure, prerequisites, how to run `main.py`, available actions, and example outputs, tailored to your project.
-- **Examples**: Covers `ping`, `interfaces`, and `ping bgp_verification`, matching your current functionality.
-- **Clarity**: Kept it concise with troubleshooting tips for common issues (e.g., SSH, dependencies).
-- **Future**: We can add new actions (e.g., `ospf_verification`) to the README as we implement them.
-
----
-
-### Next Steps
-- Save this to `README.md` and let me know if you want tweaks (e.g., add a project overview, license, or logos).
-- With `ping` working and logs adjusted, we could:
-  - Add `ospf_verification` to check OSPF neighbors.
-  - Implement BGP/OSPF configs in `interface_actions.py`.
-  - Start `backup` or `route_monitor`.
-- Any other changes? (e.g., file logging, more actions)
-
-Does this look good? Let me know if you need help saving it or what’s next!
