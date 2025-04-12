@@ -5,7 +5,6 @@ A Python-based tool for automating network device management tasks on Junos devi
 ## Directory Structure
 
 ```
-/home/nikos/github/ngeran/vectautomation/
 ├── data/
 │   ├── hosts_data.yml      # Device configurations (interfaces, BGP, etc.)
 │   └── inventory.yml       # Inventory of devices by location and type
