@@ -1,50 +1,30 @@
 interfaces {
+{% for interface in interfaces %}
     {{ interface.name }} {
         {% if interface.description %}
         description "{{ interface.description }}";
         {% endif %}
-        {% if interface.vlan or interface.layer == "L2" %}
-        # Layer 2 Configuration
-        {% if interface.switchport_mode == "access" %}
+        {% if interface.vlan_tagging %}
         flexible-vlan-tagging;
-        encapsulation flexible-ethernet-services;
-        unit {{ interface.unit | default(0) }} {
-            vlan-id {{ interface.vlan }};
-            family ethernet-switching {
-                port-mode access;
-            }
-        }
-        {% elif interface.switchport_mode == "trunk" %}
-        flexible-vlan-tagging;
-        encapsulation flexible-ethernet-services;
-        unit {{ interface.unit | default(0) }} {
-            vlan-tags outer {{ interface.vlan }};
-            family ethernet-switching {
-                port-mode trunk;
-                {% if interface.allowed_vlans %}
-                vlan {
-                    members [ {{ interface.allowed_vlans | join(" ") }} ];
-                }
-                {% endif %}
-            }
-        }
         {% endif %}
-        {% else %}
-        # Layer 3 Configuration
-        unit {{ interface.unit | default(0) }} {
-            {% if interface.ip_address %}
+        {% if interface.mtu %}
+        mtu {{ interface.mtu }};
+        {% endif %}
+        {% if interface.vlans %}
+        vlan-tagging;
+        unit 0 {
+            vlan-id {{ interface.vlans[0].vlan_id }};
             family inet {
                 address {{ interface.ip_address }};
             }
-            {% endif %}
-            {% if interface.families %}
-            {% for family in interface.families %}
-            {% if family != "inet" %}
-            family {{ family }};
-            {% endif %}
-            {% endfor %}
-            {% endif %}
+        }
+        {% elif interface.ip_address %}
+        unit 0 {
+            family inet {
+                address {{ interface.ip_address }};
+            }
         }
         {% endif %}
     }
+{% endfor %}
 }

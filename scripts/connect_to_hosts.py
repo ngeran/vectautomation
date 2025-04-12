@@ -1,17 +1,24 @@
+# /home/nikos/github/ngeran/vectautomation/scripts/connect_to_hosts.py
 from jnpr.junos import Device
 from jnpr.junos.exception import ConnectError
 from typing import List
 import logging
 
-# Custom filter to suppress 'Sending' messages
-class SuppressSendingFilter(logging.Filter):
+# Custom filter to suppress unwanted ncclient logs
+class SuppressNcclientFilter(logging.Filter):
     def filter(self, record):
-        # Block messages containing 'Sending:'
-        return 'Sending:' not in record.getMessage()
+        msg = record.getMessage()
+        # Allow only specific INFO logs
+        return (
+            'Connected (version' in msg or
+            'Authentication (password) successful' in msg or
+            record.levelno > logging.INFO  # Allow WARNING, ERROR, etc.
+        )
 
-# Configure ncclient logger to use filter
-ncclient_logger = logging.getLogger('ncclient.transport.ssh')
-ncclient_logger.addFilter(SuppressSendingFilter())
+# Configure ncclient loggers
+for logger_name in ['ncclient.transport.ssh', 'ncclient.operations.rpc']:
+    ncclient_logger = logging.getLogger(logger_name)
+    ncclient_logger.addFilter(SuppressNcclientFilter())
 
 def connect_to_hosts(username: str, password: str, host_ips: List[str]) -> List[Device]:
     """Connect to all Junos hosts listed in the provided list of host IPs."""

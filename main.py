@@ -29,7 +29,6 @@ def main():
         username = merged_data['username']
         password = merged_data['password']
         hosts = merged_data['hosts']
-        # Only use IPs from hosts_data.yml to avoid unreachable devices
         hosts_data = load_yaml_file(hosts_data_file)
         host_ips = [host['ip_address'] for host in hosts_data.get('hosts', [])]
         interval = merged_data['interval']
