@@ -31,7 +31,7 @@ def main():
         hosts = merged_data['hosts']
         hosts_data = load_yaml_file(hosts_data_file)
         host_ips = [host['ip_address'] for host in hosts_data.get('hosts', [])]
-        interval = merged_data['interval']
+        #interval = merged_data['interval']
 
         if not args.actions:
             print("No actions specified. Use --actions with one or more of:", parser.parse_args(['--help']).actions)
