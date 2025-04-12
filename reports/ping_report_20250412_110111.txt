@@ -1,0 +1,8 @@
+Ping Verification Report - 20250412_110111
+==================================================
+
+Reachable:
+  - DC1MX480PE-1 (172.27.200.200) can reach SP1DCI106BJEX01 (172.27.200.201)
+
+Unreachable:
+  - SP1DCI106BJEX01 (172.27.200.201) ping to 172.27.200.200 failed: 'bool' object has no attribute 'text'
