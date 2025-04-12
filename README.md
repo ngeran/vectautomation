@@ -1,5 +1,4 @@
-```markdown
-# Vectautomation
+# Vector Automation
 
 A Python-based tool for automating network device management tasks on Junos devices, including pinging hosts, configuring interfaces, and verifying BGP sessions.
 
