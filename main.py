@@ -34,7 +34,8 @@ def main():
         #interval = merged_data['interval']
 
         if not args.actions:
-            print("No actions specified. Use --actions with one or more of:", parser.parse_args(['--help']).actions)
+            print("No actions specified. Use --actions with one or more of:",
+            parser.parse_args(['--help']).actions)
             return
 
         execute_actions(
