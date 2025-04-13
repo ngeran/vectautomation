@@ -1,4 +1,3 @@
-# /home/nikos/github/ngeran/vectautomation/scripts/actions.py
 from typing import Callable, List, Dict
 from scripts.verification_actions import ping_hosts, bgp_verification
 from scripts.interface_actions import configure_interfaces

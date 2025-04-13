@@ -1,4 +1,3 @@
-# /home/nikos/github/ngeran/vectautomation/scripts/interface_actions.py
 from jnpr.junos.utils.config import Config
 from jnpr.junos.exception import ConfigLoadError, CommitError
 from jinja2 import Environment, FileSystemLoader
