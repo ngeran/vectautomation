@@ -1,11 +1,6 @@
-from jnpr.junos.utils.config import Config
-from jnpr.junos.exception import ConfigLoadError, CommitError
 from jinja2 import Environment, FileSystemLoader
 import os
-import logging
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from scripts.junos_actions import configure_device
 
 def configure_interfaces(username, password, host_ips, hosts, connect_to_hosts, disconnect_from_hosts):
     """Configure interfaces on devices based on hosts_data.yml."""
@@ -28,21 +23,12 @@ def configure_interfaces(username, password, host_ips, hosts, connect_to_hosts, 
                 print(f"No interfaces defined for {host.get('host_name', host_ip)} ({host_ip}), skipping.")
                 continue
 
-            try:
-                config_data = {
-                    'interfaces': host['interfaces'],
-                    'host_name': host['host_name']
-                }
-                config_text = template.render(**config_data)
-
-                with Config(dev, mode='exclusive') as cu:
-                    cu.load(config_text, format='text')
-                    cu.commit()
-                print(f"Interfaces configured for {host['host_name']} ({host_ip})")
-            except (ConfigLoadError, CommitError) as error:
-                print(f"Failed to configure interfaces for {host['host_name']} ({host_ip}): {error}")
-            except Exception as error:
-                print(f"Unexpected error for {host['host_name']} ({host_ip}): {error}")
+            config_data = {
+                'interfaces': host['interfaces'],
+                'host_name': host['host_name']
+            }
+            config_text = template.render(**config_data)
+            configure_device(dev, config_text, host['host_name'], host_ip)
 
     except KeyboardInterrupt:
         print("Interface configuration interrupted by user.")
