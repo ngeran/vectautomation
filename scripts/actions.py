@@ -21,6 +21,7 @@ def execute_actions(
 ) -> None:
     """Execute the specified actions for the given hosts."""
     action_map = get_action_map()
+    # Dictionary Keys
     valid_actions = action_map.keys()
 
     try:
@@ -30,7 +31,9 @@ def execute_actions(
                 continue
 
             print(f"Executing action: {action}")
+            # Retrieve the function object using the action name from the dictionary
             action_func = action_map[action]
+            # Passes the necessary parameters to execute the action
             action_func(
                 username=username,
                 password=password,
@@ -39,6 +42,7 @@ def execute_actions(
                 connect_to_hosts=connect_to_hosts,
                 disconnect_from_hosts=disconnect_from_hosts
             )
+    # If the user hits Ctrl+C stops the process and prints a message
     except KeyboardInterrupt:
         print("Action execution interrupted by user.")
         raise
